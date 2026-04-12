@@ -105,8 +105,8 @@
             <div class="flex justify-between items-center h-16 md:h-20">
                 <div class="flex-shrink-0 flex items-center gap-2 md:gap-3">
                     <!-- Logo mark -->
-                    <div
-                        class="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-tr from-brand-700 to-brand-500 rounded-lg flex items-center justify-center text-white font-bold text-lg md:text-xl shadow-md">
+                    <img src="/assets/logo-pic.png" alt="Siddique Taxi Logo" class="h-10 md:h-12 w-10 md:w-12 object-contain drop-shadow-md rounded-full bg-white p-0.5 shadow-sm" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                    <div class="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-tr from-brand-700 to-brand-500 rounded-full hidden items-center justify-center text-white font-bold text-lg md:text-xl shadow-md">
                         S
                     </div>
                     <div class="flex flex-col justify-center">
@@ -117,7 +117,11 @@
                             data-i18n="tagline">Your trusted friend for every journey</span>
                     </div>
                 </div>
-                <div>
+                <div class="flex items-center gap-4 lg:gap-8 ml-auto">
+                    <div class="hidden md:flex items-center gap-6 lg:gap-8 font-bold text-gray-800">
+                        <a href="index.html" class="hover:text-brand-600 transition-colors" data-i18n="navHome">Home</a>
+                        <a href="booking.html" class="hover:text-brand-600 transition-colors" data-i18n="navBook">Book a Ride</a>
+                    </div>
                     <button onclick="toggleLanguage()"
                         class="flex items-center gap-1.5 md:gap-2 bg-white border border-gray-200 hover:bg-gray-50 text-gray-800 font-semibold py-1.5 px-3 md:py-2 md:px-5 rounded-full transition-colors duration-200 shadow-sm text-sm md:text-base">
                         <svg class="w-4 h-4 md:w-5 md:h-5 translate-icon-gap text-brand-600" fill="none"
@@ -128,15 +132,36 @@
                         </svg>
                         <span data-i18n="navLang">العربية</span>
                     </button>
+                    <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-gray-800 hover:text-brand-600 focus:outline-none transition-colors ml-2">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path id="hamburgerPath" stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
                 </div>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden absolute w-full left-0 bg-white border-t border-gray-200/50 shadow-xl pb-4 pt-2">
+            <div class="flex flex-col px-4 space-y-2 font-bold text-gray-800">
+                <a href="index.html" class="block py-3 px-4 rounded-xl bg-gray-50 hover:bg-brand-50 hover:text-brand-700 transition-colors" data-i18n="navHome">Home</a>
+                <a href="booking.html" class="block py-3 px-4 rounded-xl bg-gray-50 hover:bg-brand-50 hover:text-brand-700 transition-colors" data-i18n="navBook">Book a Ride</a>
+                <!-- Mobile Lang Toggle -->
+                <button onclick="toggleLanguage()" class="w-full mt-2 flex items-center justify-center gap-2 bg-brand-50 text-brand-700 py-3.5 rounded-xl font-bold transition-colors">
+                    <svg class="w-5 h-5 translate-icon-gap" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path>
+                    </svg>
+                    <span data-i18n="navLang">العربية</span>
+                </button>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative pt-24 pb-16 md:pt-40 md:pb-28 overflow-hidden">
-        <div class="absolute inset-0 z-0">
-            <div class="absolute inset-0 bg-gradient-to-br from-brand-900 via-brand-800 to-blue-900"></div>
+    <section class="relative pt-24 pb-16 md:pt-40 md:pb-28 overflow-hidden group">
+        <div class="absolute inset-0 z-0 pointer-events-none">
+            <img src="/assets/makkah-pic.jpg" alt="Makkah Background" class="absolute inset-0 w-full h-full object-cover blur-[2px] brightness-[0.45] transition-transform duration-[10s] group-hover:scale-105" />
+            <div class="absolute inset-0 bg-brand-900/30"></div>
             <!-- Decorative circles -->
             <div
                 class="absolute -top-12 -right-12 sm:-top-24 sm:-right-24 w-64 h-64 sm:w-96 sm:h-96 bg-white opacity-10 rounded-full blur-3xl">
@@ -155,12 +180,11 @@
                 Experience safe, comfortable, and reliable transportation between the
                 holy cities and airports. Book your journey with peace of mind.
             </p>
-            <div class="fade-up delay-200">
-                <button onclick="openModal()"
-                    class="inline-block bg-white text-brand-900 font-bold text-lg sm:text-xl px-8 sm:px-10 py-3.5 sm:py-4 rounded-full shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300 ring-4 ring-white/20 w-fit cursor-pointer">
-                    <span data-i18n="heroBtn">Book Now</span>
-                </button>
-            </div>
+            <button type="button" onclick="window.location.href='booking.html'"
+                class="inline-block relative z-20 group font-bold text-lg sm:text-xl px-8 sm:px-10 py-3.5 sm:py-4 rounded-full shadow-xl hover:shadow-2xl hover:-translate-y-1 active:translate-y-0 transition-all duration-300 ring-4 ring-white/20 w-fit cursor-pointer overflow-hidden bg-white text-brand-900">
+                <span class="relative z-10" data-i18n="heroBtn">Book Now</span>
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-gray-100 to-transparent translate-x-[-150%] skew-x-[-20deg] group-hover:animate-[sweep_1.5s_ease-out_infinite]"></div>
+            </button>
         </div>
     </section>
 
@@ -251,7 +275,7 @@
                     class="bg-gray-50/50 rounded-[2rem] overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 lg:w-1/2 flex flex-col border border-gray-100 fade-up">
                     <div class="h-56 sm:h-64 bg-gray-200 relative overflow-hidden group">
                         <div
-                            class="absolute inset-0 bg-gradient-to-tr from-gray-300 to-gray-100 mix-blend-multiply z-10 transition-opacity group-hover:opacity-40">
+                            class="absolute inset-0 bg-gradient-to-tr from-gray-300 to-gray-100 mix-blend-multiply z-10 transition-opacity group-hover:opacity-40 pointer-events-none">
                         </div>
                         <img src="/assets/camary-pic.jpg" alt="Economy Car" onerror="
                   this.src =
@@ -271,9 +295,10 @@
                             Economic and comfortable for individuals and small groups. Great
                             for standard trips.
                         </p>
-                        <button onclick="sendWhatsAppMessage('Economy')"
-                            class="w-full block text-center bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3.5 sm:py-4 px-4 rounded-xl transition-colors duration-200 shadow-sm active:scale-95 cursor-pointer">
-                            <span data-i18n="heroBtn">Book Now</span>
+                        <button onclick="window.location.href='booking.html?car=economy'"
+                            class="w-full block text-center bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3.5 sm:py-4 px-4 rounded-xl transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 cursor-pointer relative z-20 overflow-hidden group/btn">
+                            <span class="relative z-10" data-i18n="heroBtn">Book Now</span>
+                            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent translate-x-[-150%] skew-x-[-20deg] group-hover/btn:animate-[sweep_1.5s_ease-out_infinite]"></div>
                         </button>
                     </div>
                 </div>
@@ -285,7 +310,7 @@
 
                     <div class="h-56 sm:h-64 bg-brand-900 relative overflow-hidden group">
                         <div
-                            class="absolute inset-0 bg-gradient-to-tr from-brand-900 to-brand-700 mix-blend-multiply opacity-60 z-10 transition-opacity group-hover:opacity-40">
+                            class="absolute inset-0 bg-gradient-to-tr from-brand-900 to-brand-700 mix-blend-multiply opacity-60 z-10 transition-opacity group-hover:opacity-40 pointer-events-none">
                         </div>
                         <img src="/assets/staria-pic.jpg" alt="VIP Car" onerror="
                   this.src =
@@ -310,9 +335,10 @@
                             Spacious luxury for families and VIPs. Ultimate comfort with
                             premium seating and extra luggage space.
                         </p>
-                        <button onclick="sendWhatsAppMessage('VIP')"
-                            class="w-full block text-center bg-brand-600 hover:bg-brand-700 text-white font-bold py-3.5 sm:py-4 px-4 rounded-xl shadow-[0_8px_20px_rgb(124,58,237,0.3)] sm:shadow-[0_8px_30px_rgb(124,58,237,0.3)] hover:shadow-[0_8px_30px_rgb(124,58,237,0.5)] transition-all duration-300 active:scale-95 cursor-pointer">
-                            <span data-i18n="heroBtn">Book Now</span>
+                        <button onclick="window.location.href='booking.html?car=vip'"
+                            class="w-full block text-center bg-brand-600 hover:bg-brand-700 text-white font-bold py-3.5 sm:py-4 px-4 rounded-xl shadow-[0_8px_20px_rgb(124,58,237,0.3)] sm:shadow-[0_8px_30px_rgb(124,58,237,0.3)] hover:shadow-[0_8px_30px_rgb(124,58,237,0.5)] transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer relative z-20 overflow-hidden group/btn">
+                            <span class="relative z-10" data-i18n="heroBtn">Book Now</span>
+                            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent translate-x-[-150%] skew-x-[-20deg] group-hover/btn:animate-[sweep_1.5s_ease-out_infinite]"></div>
                         </button>
                     </div>
                 </div>
@@ -405,7 +431,8 @@
     <footer class="bg-gray-900 text-gray-400 py-3 sm:py-4 border-t border-gray-800">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-1 sm:gap-4">
-                <span class="font-bold text-sm sm:text-base text-white tracking-tight" data-i18n="navLogo">Siddique Taxi</span>
+                <span class="font-bold text-sm sm:text-base text-white tracking-tight" data-i18n="navLogo">Siddique
+                    Taxi</span>
                 <p class="text-[0.65rem] sm:text-xs font-medium opacity-80 text-center" data-i18n="footerText">
                     © 2024 Siddique Taxi. All rights reserved.
                 </p>
@@ -415,14 +442,14 @@
 
     <!-- WhatsApp Floating Button -->
     <a href="https://wa.me/+923156952026" target="_blank"
-        class="fixed bottom-6 right-4 sm:right-6 lg:bottom-10 lg:right-10 z-[90] whatsapp-btn bg-[#25D366] text-white p-3.5 sm:p-4 rounded-full shadow-[0_8px_30px_rgb(37,211,102,0.4)] hover:scale-110 hover:bg-[#20b858] active:scale-95 transition-all duration-300 group flex items-center justify-center">
+        class="fixed bottom-6 right-4 sm:right-6 lg:bottom-10 lg:right-10 z-[90] whatsapp-btn bg-[#25D366] text-white p-4 sm:p-5 rounded-full shadow-[0_8px_30px_rgb(37,211,102,0.4)] hover:scale-110 hover:bg-[#20b858] active:scale-95 transition-all duration-300 group flex items-center justify-center">
         <!-- Tooltip -->
         <span
             class="absolute right-full mr-3 sm:mr-4 whatsapp-tooltip bg-gray-900 text-white text-xs sm:text-sm font-medium px-3 sm:px-4 py-2 rounded-xl opacity-0 xl:opacity-100 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-xl transform xl:-translate-y-0.5 group-hover:-translate-y-0.5 duration-200"
             data-i18n="whatsappTooltip">
             Contact us
         </span>
-        <svg class="w-6 h-6 sm:w-8 sm:h-8 drop-shadow-sm" fill="currentColor" viewBox="0 0 24 24"
+        <svg class="w-8 h-8 sm:w-10 sm:h-10 drop-shadow-sm" fill="currentColor" viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg">
             <path
                 d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.614-.087-.112-.712-.927-.712-1.77 0-.843.438-1.25.596-1.423.158-.173.344-.216.458-.216.115 0 .23 0 .327.005.101.005.234-.038.366.28.143.344.489 1.168.532 1.255.043.087.072.188.014.303-.058.115-.087.187-.173.288-.086.101-.184.216-.259.288-.087.086-.179.18-.079.352.099.172.443.734.954 1.189.658.587 1.206.772 1.378.859.172.086.273.08.38-.035.109-.115.467-.542.59-.728.122-.186.244-.155.4-.101.158.057 1.006.474 1.179.561.172.086.287.13.33.201.042.072.042.418-.102.823z" />
@@ -434,7 +461,7 @@
 
     <!-- Booking Popup (Modal) -->
     <div id="bookingModal"
-        class="fixed inset-0 z-[110] flex items-end sm:items-center justify-center pointer-events-none">
+        class="hidden fixed inset-0 z-[110] flex items-end sm:items-center justify-center pointer-events-none">
         <!-- Backdrop -->
         <div id="modalOverlay"
             class="absolute inset-0 bg-gray-900/60 backdrop-blur-sm transition-opacity duration-300 pointer-events-none"
@@ -498,9 +525,11 @@
         // Translations Dictionary
         const translations = {
             en: {
-                pageTitle: "Siddique Taxi",
+                pageTitle: "Hajj & Umrah Taxi Service",
                 navLogo: "Siddique Taxi",
                 tagline: "Your trusted friend for every journey",
+                navHome: "Home",
+                navBook: "Book a Ride",
                 navLang: "العربية",
                 heroTitle: "Premium Hajj & Umrah Taxi Service",
                 heroDesc:
@@ -538,9 +567,11 @@
                     "© 2024 Siddique Taxi. All rights reserved. | WhatsApp/Call: +923156952026",
             },
             ar: {
-                pageTitle: "تكسي الصديق",
+                pageTitle: "خدمة تاكسي الحج والعمرة",
                 navLogo: "تكسي الصديق",
                 tagline: "صديقك الموثوق في كل رحلة",
+                navHome: "الرئيسية",
+                navBook: "احجز رحلة",
                 navLang: "English",
                 heroTitle: "خدمة سيارات أجرة متميزة للحج والعمرة",
                 heroDesc:
@@ -654,12 +685,13 @@
         const modalContent = document.getElementById("modalContent");
 
         function openModal() {
-            modal.classList.remove("pointer-events-none");
-            modalOverlay.classList.remove("pointer-events-none");
-            modalOverlay.classList.add("pointer-events-auto");
-            document.body.classList.add("modal-open"); // Prevent body scroll
-
+            modal.classList.remove("hidden");
+            
             setTimeout(() => {
+                modal.classList.remove("pointer-events-none");
+                modalOverlay.classList.remove("pointer-events-none");
+                modalOverlay.classList.add("pointer-events-auto");
+                document.body.classList.add("modal-open"); // Prevent body scroll
                 modalOverlay.style.opacity = "1";
                 modalContent.style.opacity = "1";
                 modalContent.style.transform = "translateY(0) scale(1)";
@@ -681,6 +713,7 @@
 
             setTimeout(() => {
                 modal.classList.add("pointer-events-none");
+                modal.classList.add("hidden");
             }, 300); // Matches transition duration
         }
 
@@ -720,18 +753,40 @@
         // Hide Navbar on Scroll
         let lastScrollTop = 0;
         const navbar = document.getElementById("navbar");
-        
-        window.addEventListener("scroll", function() {
-            let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-            if (currentScroll > lastScrollTop && currentScroll > 80) {
-                // Scroll Down - hide navbar
-                navbar.classList.add("-translate-y-full");
+
+        window.addEventListener(
+            "scroll",
+            function () {
+                let currentScroll =
+                    window.pageYOffset || document.documentElement.scrollTop;
+                if (currentScroll > lastScrollTop && currentScroll > 80) {
+                    // Scroll Down - hide navbar BUT don't hide if menu is open
+                    if(!mobileMenuOpen) {
+                        navbar.classList.add("-translate-y-full");
+                    }
+                } else {
+                    // Scroll Up - show navbar
+                    navbar.classList.remove("-translate-y-full");
+                }
+                lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+            },
+            false,
+        );
+
+        // Mobile Menu Toggle
+        let mobileMenuOpen = false;
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const path = document.getElementById('hamburgerPath');
+            mobileMenuOpen = !mobileMenuOpen;
+            if(mobileMenuOpen) {
+                menu.classList.remove('hidden');
+                path.setAttribute('d', 'M6 18L18 6M6 6l12 12'); // Cross
             } else {
-                // Scroll Up - show navbar
-                navbar.classList.remove("-translate-y-full");
+                menu.classList.add('hidden');
+                path.setAttribute('d', 'M4 6h16M4 12h16M4 18h16'); // Hamburger
             }
-            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
-        }, false);
+        }
     </script>
 </body>
 

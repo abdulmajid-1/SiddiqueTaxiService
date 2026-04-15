@@ -1,591 +1,807 @@
 <!doctype html>
 <html lang="en" class="scroll-smooth">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     <title data-i18n="pageTitle">Book a Ride - Siddique Taxi</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap"
-        rel="stylesheet" />
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
 
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ["Inter", "sans-serif"],
-                        arabic: ["Tajawal", "sans-serif"],
-                    },
-                    colors: {
-                        brand: {
-                            50: "#f5f3ff",
-                            100: "#ede9fe",
-                            500: "#8b5cf6",
-                            600: "#7c3aed",
-                            700: "#6d28d9",
-                            800: "#5b21b6",
-                            900: "#4c1d95",
-                        },
-                    },
-                },
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              arabic: ["Tajawal", "sans-serif"],
             },
-        };
+            colors: {
+              brand: {
+                50: "#f5f3ff",
+                100: "#ede9fe",
+                500: "#8b5cf6",
+                600: "#7c3aed",
+                700: "#6d28d9",
+                800: "#5b21b6",
+                900: "#4c1d95",
+              },
+            },
+          },
+        },
+      };
     </script>
     <style>
-        .fade-in {
-            animation: fadeIn 0.4s ease-out forwards;
+      .fade-in {
+        animation: fadeIn 0.4s ease-out forwards;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
+        to {
+          opacity: 1;
         }
+      }
 
-        html[dir="rtl"] {
-            font-family: "Tajawal", sans-serif;
-            text-align: right;
-        }
+      html[dir="rtl"] {
+        font-family: "Tajawal", sans-serif;
+        text-align: right;
+      }
 
-        html[dir="rtl"] .translate-icon-gap {
-            margin-right: 0.5rem;
-            margin-left: 0;
-        }
+      html[dir="rtl"] .translate-icon-gap {
+        margin-right: 0.5rem;
+        margin-left: 0;
+      }
     </style>
-</head>
+  </head>
 
-<body
-    class="bg-gray-50 text-gray-800 antialiased font-sans flex flex-col min-h-screen selection:bg-brand-500 selection:text-white pt-24 pb-12">
+  <body
+    class="bg-gray-50 text-gray-800 antialiased font-sans flex flex-col min-h-screen selection:bg-brand-500 selection:text-white pt-24 pb-12"
+  >
     <!-- Navbar -->
-    <nav id="navbar"
-        class="fixed top-0 w-full z-50 transition-transform duration-300 backdrop-blur-md bg-white/90 border-b border-gray-200/50 shadow-sm translate-y-0">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16 md:h-20">
-                <!-- Logo mark -->
-                <div class="flex-shrink-0 flex items-center gap-2 md:gap-3 cursor-pointer"
-                    onclick="window.location.href='index.html'">
-                    <img src="/assets/logo-pic.png" alt="Siddique Taxi Logo"
-                        class="h-10 md:h-12 w-10 md:w-12 object-contain drop-shadow-md rounded-full bg-white p-0.5 shadow-sm"
-                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-                    <div
-                        class="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-tr from-brand-700 to-brand-500 rounded-full hidden items-center justify-center text-white font-bold text-lg md:text-xl shadow-md">
-                        S
-                    </div>
-                    <div class="flex flex-col justify-center">
-                        <span class="font-bold text-lg md:text-2xl text-gray-900 tracking-tight leading-tight"
-                            data-i18n="navLogo">Siddique Taxi</span>
-                        <span
-                            class="text-[0.6rem] md:text-xs text-brand-600 font-semibold tracking-wide hidden sm:block"
-                            data-i18n="tagline">Your trusted friend for every journey</span>
-                    </div>
-                </div>
-                <!-- Right Aligned Items -->
-                <div class="flex items-center gap-4 lg:gap-8 ml-auto">
-                    <!-- Desktop Links -->
-                    <div class="hidden md:flex items-center gap-6 lg:gap-8 font-bold text-gray-800">
-                        <a href="index.html" class="hover:text-brand-600 transition-colors" data-i18n="navHome">Home</a>
-                        <a href="booking.html" class="hover:text-brand-600 transition-colors" data-i18n="navBook">Book a
-                            Ride</a>
-                    </div>
-
-                    <!-- Desktop Lang Toggle -->
-                    <button onclick="toggleLanguage()"
-                        class="hidden md:flex items-center gap-1.5 md:gap-2 bg-white border border-gray-200 hover:bg-gray-50 text-gray-800 font-semibold py-1.5 px-3 md:py-2 md:px-5 rounded-full transition-colors duration-200 shadow-sm text-sm md:text-base">
-                        <svg class="w-4 h-4 md:w-5 md:h-5 translate-icon-gap text-brand-600" fill="none"
-                            stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129">
-                            </path>
-                        </svg>
-                        <span data-i18n="navLang">العربية</span>
-                    </button>
-                    <!-- Mobile Hamburger -->
-                    <button onclick="toggleMobileMenu()"
-                        class="md:hidden p-2 text-gray-800 hover:text-brand-600 focus:outline-none transition-colors ml-2">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path id="hamburgerPath" stroke-linecap="round" stroke-linejoin="round"
-                                d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
+    <nav
+      id="navbar"
+      class="fixed top-0 w-full z-50 transition-transform duration-300 backdrop-blur-md bg-white/90 border-b border-gray-200/50 shadow-sm translate-y-0"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16 md:h-20">
+          <!-- Logo mark -->
+          <div
+            class="flex-shrink-0 flex items-center gap-2 md:gap-3 cursor-pointer"
+            onclick="window.location.href = 'index.html'"
+          >
+            <img
+              src="/assets/logo-pic.png"
+              alt="Siddique Taxi Logo"
+              class="h-10 md:h-12 w-10 md:w-12 object-contain drop-shadow-md rounded-full bg-white p-0.5 shadow-sm"
+              onerror="
+                this.style.display = 'none';
+                this.nextElementSibling.style.display = 'flex';
+              "
+            />
+            <div
+              class="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-tr from-brand-700 to-brand-500 rounded-full hidden items-center justify-center text-white font-bold text-lg md:text-xl shadow-md"
+            >
+              S
             </div>
-        </div>
-
-        <!-- Mobile Dropdown -->
-        <div id="mobileMenu"
-            class="hidden md:hidden absolute w-full left-0 bg-white border-t border-gray-200/50 shadow-xl pb-4 pt-2">
-            <div class="flex flex-col px-4 space-y-2 font-bold text-gray-800">
-                <a href="index.html"
-                    class="block py-3 px-4 rounded-xl bg-gray-50 hover:bg-brand-50 hover:text-brand-700 transition-colors"
-                    data-i18n="navHome">Home</a>
-                <a href="booking.html"
-                    class="block py-3 px-4 rounded-xl bg-gray-50 hover:bg-brand-50 hover:text-brand-700 transition-colors"
-                    data-i18n="navBook">Book a Ride</a>
-                <!-- Mobile Lang Toggle -->
-                <button onclick="toggleLanguage()"
-                    class="w-full mt-2 flex items-center justify-center gap-2 bg-brand-50 hover:bg-brand-100 text-brand-700 py-3.5 rounded-xl font-bold transition-colors">
-                    <svg class="w-5 h-5 translate-icon-gap" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129">
-                        </path>
-                    </svg>
-                    <span data-i18n="navLang">العربية</span>
-                </button>
+            <div class="flex flex-col justify-center">
+              <span
+                class="font-bold text-lg md:text-2xl text-gray-900 tracking-tight leading-tight"
+                data-i18n="navLogo"
+                >Siddique Taxi</span
+              >
+              <span
+                class="text-[0.6rem] md:text-xs text-brand-600 font-semibold tracking-wide hidden sm:block"
+                data-i18n="tagline"
+                >Your trusted friend for every journey</span
+              >
             </div>
+          </div>
+          <!-- Right Aligned Items -->
+          <div class="flex items-center gap-4 lg:gap-8 ml-auto">
+            <!-- Desktop Links -->
+            <div
+              class="hidden md:flex items-center gap-6 lg:gap-8 font-bold text-gray-800"
+            >
+              <a
+                href="index.html"
+                class="hover:text-brand-600 transition-colors"
+                data-i18n="navHome"
+                >Home</a
+              >
+              <a
+                href="booking.html"
+                class="hover:text-brand-600 transition-colors"
+                data-i18n="navBook"
+                >Book a Ride</a
+              >
+            </div>
+
+            <!-- Desktop Lang Toggle -->
+            <button
+              onclick="toggleLanguage()"
+              class="hidden md:flex items-center gap-1.5 md:gap-2 bg-white border border-gray-200 hover:bg-gray-50 text-gray-800 font-semibold py-1.5 px-3 md:py-2 md:px-5 rounded-full transition-colors duration-200 shadow-sm text-sm md:text-base"
+            >
+              <svg
+                class="w-4 h-4 md:w-5 md:h-5 translate-icon-gap text-brand-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
+                ></path>
+              </svg>
+              <span data-i18n="navLang">العربية</span>
+            </button>
+            <!-- Mobile Hamburger -->
+            <button
+              onclick="toggleMobileMenu()"
+              class="md:hidden p-2 text-gray-800 hover:text-brand-600 focus:outline-none transition-colors ml-2"
+            >
+              <svg
+                class="w-7 h-7"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  id="hamburgerPath"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
+      </div>
+
+      <!-- Mobile Dropdown -->
+      <div
+        id="mobileMenu"
+        class="hidden md:hidden absolute w-full left-0 bg-white border-t border-gray-200/50 shadow-xl pb-4 pt-2"
+      >
+        <div class="flex flex-col px-4 space-y-2 font-bold text-gray-800">
+          <a
+            href="index.html"
+            class="block py-3 px-4 rounded-xl bg-gray-50 hover:bg-brand-50 hover:text-brand-700 transition-colors"
+            data-i18n="navHome"
+            >Home</a
+          >
+          <a
+            href="booking.html"
+            class="block py-3 px-4 rounded-xl bg-gray-50 hover:bg-brand-50 hover:text-brand-700 transition-colors"
+            data-i18n="navBook"
+            >Book a Ride</a
+          >
+          <!-- Mobile Lang Toggle -->
+          <button
+            onclick="toggleLanguage()"
+            class="w-full mt-2 flex items-center justify-center gap-2 bg-brand-50 hover:bg-brand-100 text-brand-700 py-3.5 rounded-xl font-bold transition-colors"
+          >
+            <svg
+              class="w-5 h-5 translate-icon-gap"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
+              ></path>
+            </svg>
+            <span data-i18n="navLang">العربية</span>
+          </button>
+        </div>
+      </div>
     </nav>
 
     <!-- Main Booking Section -->
-    <main class="flex-grow flex items-center justify-center px-4 sm:px-6 lg:px-8 mt-4 sm:mt-12">
+    <main
+      class="flex-grow flex items-center justify-center px-4 sm:px-6 lg:px-8 mt-4 sm:mt-12"
+    >
+      <div
+        class="max-w-6xl w-full bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden flex flex-col lg:flex-row"
+      >
+        <!-- Left Side: Visuals & Vehicle Specs -->
         <div
-            class="max-w-6xl w-full bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden flex flex-col lg:flex-row">
+          class="lg:w-1/2 relative bg-gray-50 flex flex-col p-4 lg:p-6 gap-4 border-b lg:border-b-0 lg:border-r border-gray-100"
+        >
+          <div
+            class="absolute inset-x-0 top-0 h-1.5 z-30 bg-gradient-to-r from-brand-400 to-brand-600 rounded-tl-3xl lg:rounded-bl-3xl lg:h-full lg:w-1.5 lg:inset-y-0 lg:left-0"
+            id="vipHighlightBar"
+            style="display: none"
+          ></div>
+          <!-- Top Part: Car Picture box -->
+          <div
+            class="relative h-48 sm:h-64 lg:h-[45%] w-full bg-white rounded-[2rem] shadow-sm flex items-center justify-center overflow-hidden border border-gray-100/50 group"
+          >
+            <img
+              id="carImage"
+              src="/assets/camary-pic.jpg"
+              alt="Selected Car"
+              class="w-full h-full object-contain p-4 sm:p-6 transition-transform duration-700 fade-in drop-shadow-lg group-hover:scale-105"
+            />
+          </div>
 
-            <!-- Left Side: Visuals & Vehicle Specs -->
-            <div
-                class="lg:w-1/2 relative bg-gray-50 flex flex-col p-4 lg:p-6 gap-4 border-b lg:border-b-0 lg:border-r border-gray-100">
-                <div class="absolute inset-x-0 top-0 h-1.5 z-30 bg-gradient-to-r from-brand-400 to-brand-600 rounded-tl-3xl lg:rounded-bl-3xl lg:h-full lg:w-1.5 lg:inset-y-0 lg:left-0"
-                    id="vipHighlightBar" style="display: none;"></div>
-                <!-- Top Part: Car Picture box -->
-                <div
-                    class="relative h-48 sm:h-64 lg:h-[45%] w-full bg-white rounded-[2rem] shadow-sm flex items-center justify-center overflow-hidden border border-gray-100/50 group">
-                    <img id="carImage" src="/assets/camary-pic.jpg" alt="Selected Car"
-                        class="w-full h-full object-contain p-4 sm:p-6 transition-transform duration-700 fade-in drop-shadow-lg group-hover:scale-105" />
-                </div>
-
-                <!-- Bottom Part: Details & Specs Panel -->
-                <div
-                    class="bg-white flex-1 rounded-[2rem] shadow-sm border border-gray-100/50 p-6 flex flex-col justify-center">
-                    <div class="mb-6 text-center sm:text-left">
-                        <span id="carBadge"
-                            class="bg-gray-800 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-md uppercase tracking-wider mb-3 inline-block"
-                            data-i18n="economyBadge">Economy</span>
-                        <h2 id="carTitleEn" class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight"
-                            data-i18n="veh2Title">Toyota Camry</h2>
-                    </div>
-
-                    <div class="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-                        <!-- Feature 1: Seats -->
-                        <div
-                            class="bg-brand-50/40 rounded-2xl p-4 flex flex-col items-center justify-center border border-brand-100/30 transition-transform hover:-translate-y-1">
-                            <svg class="w-7 h-7 text-brand-600 mb-2 drop-shadow-sm" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
-                                </path>
-                            </svg>
-                            <span class="text-lg font-bold text-gray-900"><span id="carSeats">4</span></span>
-                            <span
-                                class="text-[0.65rem] sm:text-xs text-gray-500 font-bold uppercase tracking-widest mt-0.5"
-                                data-i18n="seaterLabel">Seats</span>
-                        </div>
-
-                        <!-- Feature 2: Luggage -->
-                        <div
-                            class="bg-brand-50/40 rounded-2xl p-4 flex flex-col items-center justify-center border border-brand-100/30 transition-transform hover:-translate-y-1">
-                            <svg class="w-7 h-7 text-brand-600 mb-2 drop-shadow-sm" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
-                                </path>
-                            </svg>
-                            <span class="text-lg font-bold text-gray-900"><span id="carLuggage">3</span></span>
-                            <span
-                                class="text-[0.65rem] sm:text-xs text-gray-500 font-bold uppercase tracking-widest mt-0.5"
-                                data-i18n="luggageLabel">Luggage</span>
-                        </div>
-
-                        <!-- Feature 3: Air Conditioning -->
-                        <div
-                            class="bg-brand-50/40 rounded-2xl p-4 flex flex-col items-center justify-center border border-brand-100/30 transition-transform hover:-translate-y-1 col-span-2 lg:col-span-1">
-                            <svg class="w-7 h-7 text-brand-600 mb-2 drop-shadow-sm" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2-1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5">
-                                </path>
-                            </svg>
-                            <span class="text-lg font-bold text-gray-900" data-i18n="acYes">Yes</span>
-                            <span
-                                class="text-[0.65rem] sm:text-xs text-gray-500 font-bold uppercase tracking-widest mt-0.5"
-                                data-i18n="acLabel">A/C</span>
-                        </div>
-                    </div>
-                </div>
+          <!-- Bottom Part: Details & Specs Panel -->
+          <div
+            class="bg-white flex-1 rounded-[2rem] shadow-sm border border-gray-100/50 p-6 flex flex-col justify-center"
+          >
+            <div class="mb-6 text-center sm:text-left">
+              <span
+                id="carBadge"
+                class="bg-gray-800 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-md uppercase tracking-wider mb-3 inline-block"
+                data-i18n="economyBadge"
+                >Economy</span
+              >
+              <h2
+                id="carTitleEn"
+                class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight"
+                data-i18n="veh2Title"
+              >
+                Toyota Camry
+              </h2>
             </div>
 
-            <!-- Right Side: Booking Form -->
-            <div class="lg:w-1/2 p-6 sm:p-10 lg:p-12 flex flex-col justify-center">
-                <div class="mb-8">
-                    <h1 class="text-3xl font-extrabold text-gray-900 mb-2" data-i18n="bookTitle">Complete Your Booking
-                    </h1>
-                    <p class="text-gray-500 font-medium text-sm" data-i18n="bookSubtitle">Select your vehicle and tell
-                        us where you need to go.</p>
-                </div>
+            <div class="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+              <!-- Feature 1: Seats -->
+              <div
+                class="bg-brand-50/40 rounded-2xl p-4 flex flex-col items-center justify-center border border-brand-100/30 transition-transform hover:-translate-y-1"
+              >
+                <svg
+                  class="w-7 h-7 text-brand-600 mb-2 drop-shadow-sm"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                  ></path>
+                </svg>
+                <span class="text-lg font-bold text-gray-900"
+                  ><span id="carSeats">4</span></span
+                >
+                <span
+                  class="text-[0.65rem] sm:text-xs text-gray-500 font-bold uppercase tracking-widest mt-0.5"
+                  data-i18n="seaterLabel"
+                  >Seats</span
+                >
+              </div>
 
-                <!-- Vehicle Selector -->
-                <div class="mb-6">
-                    <label class="block text-sm font-bold text-gray-700 mb-2" data-i18n="selectVehicleLabel">Choose
-                        Vehicle Class</label>
-                    <div class="flex p-1 bg-gray-100 rounded-xl relative shadow-inner">
-                        <button id="btnEconomy" onclick="selectVehicle('economy')"
-                            class="flex-1 py-2.5 text-sm font-bold bg-white shadow-sm rounded-lg text-gray-900 transition-all z-10"
-                            data-i18n="btnEconomy">Economy (Camry)</button>
-                        <button id="btnVip" onclick="selectVehicle('vip')"
-                            class="flex-1 py-2.5 text-sm font-bold text-gray-500 hover:text-gray-900 transition-all z-10"
-                            data-i18n="btnVip">VIP (Staria)</button>
-                    </div>
-                </div>
+              <!-- Feature 2: Luggage -->
+              <div
+                class="bg-brand-50/40 rounded-2xl p-4 flex flex-col items-center justify-center border border-brand-100/30 transition-transform hover:-translate-y-1"
+              >
+                <svg
+                  class="w-7 h-7 text-brand-600 mb-2 drop-shadow-sm"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  ></path>
+                </svg>
+                <span class="text-lg font-bold text-gray-900"
+                  ><span id="carLuggage">3</span></span
+                >
+                <span
+                  class="text-[0.65rem] sm:text-xs text-gray-500 font-bold uppercase tracking-widest mt-0.5"
+                  data-i18n="luggageLabel"
+                  >Luggage</span
+                >
+              </div>
 
-                <div class="space-y-4 mb-6">
-                    <!-- Source -->
-                    <div>
-                        <label class="block text-xs sm:text-sm font-bold text-gray-700 mb-1.5"
-                            data-i18n="modalSource">Source Location</label>
-                        <input type="text" id="modalSource" placeholder="e.g. Riyadh"
-                            class="w-full px-4 py-3 sm:py-3.5 rounded-xl border-2 border-gray-100 bg-gray-50 focus:bg-white focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 outline-none transition-all text-gray-800 font-medium placeholder-gray-400 text-sm sm:text-base" />
-                    </div>
-                    <!-- Destination -->
-                    <div>
-                        <label class="block text-xs sm:text-sm font-bold text-gray-700 mb-1.5"
-                            data-i18n="modalDest">Destination</label>
-                        <input type="text" id="modalDest" placeholder="e.g. Makkah"
-                            class="w-full px-4 py-3 sm:py-3.5 rounded-xl border-2 border-gray-100 bg-gray-50 focus:bg-white focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 outline-none transition-all text-gray-800 font-medium placeholder-gray-400 text-sm sm:text-base" />
-                    </div>
-                    <!-- Date -->
-                    <div>
-                        <label class="block text-xs sm:text-sm font-bold text-gray-700 mb-1.5"
-                            data-i18n="modalDate">Travel Date</label>
-                        <input type="date" id="modalDate"
-                            class="w-full px-4 py-3 sm:py-3.5 rounded-xl border-2 border-gray-100 bg-gray-50 focus:bg-white focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 outline-none transition-all text-gray-800 font-medium text-sm sm:text-base cursor-pointer" />
-                    </div>
-                </div>
-
-                <!-- Dynamic Price Box -->
-                <div class="mb-8 p-4 bg-brand-50/50 rounded-xl border border-brand-100/50">
-                    <h4 class="text-xs font-bold text-brand-800 uppercase tracking-wider mb-3"
-                        data-i18n="estimatedPrices">Estimated Prices for Selected Route</h4>
-                    <ul class="text-sm space-y-2" id="priceList">
-                        <!-- Populated via JS -->
-                    </ul>
-                </div>
-
-                <button onclick="submitBooking()"
-                    class="w-full bg-[#25D366] hover:bg-[#20bd5a] active:bg-[#1da850] text-white font-bold text-base sm:text-lg py-3.5 sm:py-4 px-4 rounded-xl shadow-lg shadow-[#25D366]/30 hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3 relative z-20 overflow-hidden group/btn">
-                    <span class="relative z-10 flex items-center justify-center gap-2 sm:gap-3">
-                        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.614-.087-.112-.712-.927-.712-1.77 0-.843.438-1.25.596-1.423.158-.173.344-.216.458-.216.115 0 .23 0 .327.005.101.005.234-.038.366.28.143.344.489 1.168.532 1.255.043.087.072.188.014.303-.058.115-.087.187-.173.288-.086.101-.184.216-.259.288-.087.086-.179.18-.079.352.099.172.443.734.954 1.189.658.587 1.206.772 1.378.859.172.086.273.08.38-.035.109-.115.467-.542.59-.728.122-.186.244-.155.4-.101.158.057 1.006.474 1.179.561.172.086.287.13.33.201.042.072.042.418-.102.823z" />
-                        </svg>
-                        <span data-i18n="modalBtn">Book Now via WhatsApp</span>
-                    </span>
-                    <div
-                        class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent translate-x-[-150%] skew-x-[-20deg] group-hover/btn:animate-[sweep_1.5s_ease-out_infinite]">
-                    </div>
-                </button>
+              <!-- Feature 3: Air Conditioning -->
+              <div
+                class="bg-brand-50/40 rounded-2xl p-4 flex flex-col items-center justify-center border border-brand-100/30 transition-transform hover:-translate-y-1 col-span-2 lg:col-span-1"
+              >
+                <svg
+                  class="w-7 h-7 text-brand-600 mb-2 drop-shadow-sm"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2-1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"
+                  ></path>
+                </svg>
+                <span class="text-lg font-bold text-gray-900" data-i18n="acYes"
+                  >Yes</span
+                >
+                <span
+                  class="text-[0.65rem] sm:text-xs text-gray-500 font-bold uppercase tracking-widest mt-0.5"
+                  data-i18n="acLabel"
+                  >A/C</span
+                >
+              </div>
             </div>
+          </div>
         </div>
+
+        <!-- Right Side: Booking Form -->
+        <div class="lg:w-1/2 p-6 sm:p-10 lg:p-12 flex flex-col justify-center">
+          <div class="mb-8">
+            <h1
+              class="text-3xl font-extrabold text-gray-900 mb-2"
+              data-i18n="bookTitle"
+            >
+              Complete Your Booking
+            </h1>
+            <p
+              class="text-gray-500 font-medium text-sm"
+              data-i18n="bookSubtitle"
+            >
+              Select your vehicle and tell us where you need to go.
+            </p>
+          </div>
+
+          <!-- Vehicle Selector -->
+          <div class="mb-6">
+            <label
+              class="block text-sm font-bold text-gray-700 mb-2"
+              data-i18n="selectVehicleLabel"
+              >Choose Vehicle Class</label
+            >
+            <div class="flex p-1 bg-gray-100 rounded-xl relative shadow-inner">
+              <button
+                id="btnEconomy"
+                onclick="selectVehicle('economy')"
+                class="flex-1 py-2.5 text-sm font-bold bg-white shadow-sm rounded-lg text-gray-900 transition-all z-10"
+                data-i18n="btnEconomy"
+              >
+                Economy (Camry)
+              </button>
+              <button
+                id="btnVip"
+                onclick="selectVehicle('vip')"
+                class="flex-1 py-2.5 text-sm font-bold text-gray-500 hover:text-gray-900 transition-all z-10"
+                data-i18n="btnVip"
+              >
+                VIP (Staria)
+              </button>
+            </div>
+          </div>
+
+          <div class="space-y-4 mb-6">
+            <!-- Source -->
+            <div>
+              <label
+                class="block text-xs sm:text-sm font-bold text-gray-700 mb-1.5"
+                data-i18n="modalSource"
+                >Source Location</label
+              >
+              <input
+                type="text"
+                id="modalSource"
+                placeholder="e.g. Riyadh"
+                class="w-full px-4 py-3 sm:py-3.5 rounded-xl border-2 border-gray-100 bg-gray-50 focus:bg-white focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 outline-none transition-all text-gray-800 font-medium placeholder-gray-400 text-sm sm:text-base"
+              />
+            </div>
+            <!-- Destination -->
+            <div>
+              <label
+                class="block text-xs sm:text-sm font-bold text-gray-700 mb-1.5"
+                data-i18n="modalDest"
+                >Destination</label
+              >
+              <input
+                type="text"
+                id="modalDest"
+                placeholder="e.g. Makkah"
+                class="w-full px-4 py-3 sm:py-3.5 rounded-xl border-2 border-gray-100 bg-gray-50 focus:bg-white focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 outline-none transition-all text-gray-800 font-medium placeholder-gray-400 text-sm sm:text-base"
+              />
+            </div>
+            <!-- Date -->
+            <div>
+              <label
+                class="block text-xs sm:text-sm font-bold text-gray-700 mb-1.5"
+                data-i18n="modalDate"
+                >Travel Date</label
+              >
+              <input
+                type="date"
+                id="modalDate"
+                class="w-full px-4 py-3 sm:py-3.5 rounded-xl border-2 border-gray-100 bg-gray-50 focus:bg-white focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 outline-none transition-all text-gray-800 font-medium text-sm sm:text-base cursor-pointer"
+              />
+            </div>
+          </div>
+
+          <!-- Dynamic Price Box -->
+          <div
+            class="mb-8 p-4 bg-brand-50/50 rounded-xl border border-brand-100/50"
+          >
+            <h4
+              class="text-xs font-bold text-brand-800 uppercase tracking-wider mb-3"
+              data-i18n="estimatedPrices"
+            >
+              Estimated Prices for Selected Route
+            </h4>
+            <ul class="text-sm space-y-2" id="priceList">
+              <!-- Populated via JS -->
+            </ul>
+          </div>
+
+          <button
+            onclick="submitBooking()"
+            class="w-full bg-[#25D366] hover:bg-[#20bd5a] active:bg-[#1da850] text-white font-bold text-base sm:text-lg py-3.5 sm:py-4 px-4 rounded-xl shadow-lg shadow-[#25D366]/30 hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3 relative z-20 overflow-hidden group/btn"
+          >
+            <span
+              class="relative z-10 flex items-center justify-center gap-2 sm:gap-3"
+            >
+              <svg
+                class="w-5 h-5 sm:w-6 sm:h-6"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.614-.087-.112-.712-.927-.712-1.77 0-.843.438-1.25.596-1.423.158-.173.344-.216.458-.216.115 0 .23 0 .327.005.101.005.234-.038.366.28.143.344.489 1.168.532 1.255.043.087.072.188.014.303-.058.115-.087.187-.173.288-.086.101-.184.216-.259.288-.087.086-.179.18-.079.352.099.172.443.734.954 1.189.658.587 1.206.772 1.378.859.172.086.273.08.38-.035.109-.115.467-.542.59-.728.122-.186.244-.155.4-.101.158.057 1.006.474 1.179.561.172.086.287.13.33.201.042.072.042.418-.102.823z"
+                />
+              </svg>
+              <span data-i18n="modalBtn">Book Now via WhatsApp</span>
+            </span>
+            <div
+              class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent translate-x-[-150%] skew-x-[-20deg] group-hover/btn:animate-[sweep_1.5s_ease-out_infinite]"
+            ></div>
+          </button>
+        </div>
+      </div>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-400 py-3 sm:py-4 border-t border-gray-800 mt-auto">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-1 sm:gap-4">
-                <span class="font-bold text-sm sm:text-base text-white tracking-tight" data-i18n="navLogo">Siddique
-                    Taxi</span>
-                <p class="text-[0.65rem] sm:text-xs font-medium opacity-80 text-center" data-i18n="footerText">
-                    © 2024 Siddique Taxi. All rights reserved. | WhatsApp/Call: +923156952026
-                </p>
-            </div>
+    <footer
+      class="bg-gray-900 text-gray-400 py-3 sm:py-4 border-t border-gray-800 mt-auto"
+    >
+      <div class="max-w-7xl mx-auto px-4">
+        <div
+          class="flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-1 sm:gap-4"
+        >
+          <span
+            class="font-bold text-sm sm:text-base text-white tracking-tight"
+            data-i18n="navLogo"
+            >Siddique Taxi</span
+          >
+          <p
+            class="text-[0.65rem] sm:text-xs font-medium opacity-80 text-center"
+            data-i18n="footerText"
+          >
+            © 2024 Siddique Taxi. All rights reserved. | WhatsApp/Call:
+            +923156952026
+          </p>
         </div>
+      </div>
     </footer>
 
     <!-- Application Script -->
     <script>
-        const translations = {
-            en: {
-                pageTitle: "Book a Ride - Siddique Taxi",
-                navLogo: "Siddique Taxi",
-                tagline: "Your trusted friend for every journey",
-                navHome: "Home",
-                navBook: "Book a Ride",
-                navLang: "العربية",
-                economyBadge: "Economy",
-                vipBadge: "VIP",
-                seaterLabel: "Seater",
-                veh1Title: "Hyundai Staria",
-                veh2Title: "Toyota Camry",
-                bookTitle: "Complete Your Booking",
-                bookSubtitle: "Select your vehicle and tell us where you need to go.",
-                selectVehicleLabel: "Choose Vehicle Class",
-                btnEconomy: "Economy (Camry)",
-                btnVip: "VIP (Staria)",
-                modalSource: "Source Location",
-                modalDest: "Destination",
-                modalDate: "Travel Date",
-                estimatedPrices: "Estimated Prices For Popular Routes",
-                modalBtn: "Book Now via WhatsApp",
-                route1: "Riyadh → Makkah",
-                route2: "Riyadh → Medina",
-                route3: "Riyadh → Jeddah",
-                route4: "Riyadh → Dammam",
-                footerText: "© 2024 Siddique Taxi. All rights reserved. | WhatsApp/Call: +923156952026",
-                luggageLabel: "Luggage",
-                acLabel: "A/C",
-                acYes: "Yes",
-            },
-            ar: {
-                pageTitle: "احجز رحلتك - تكسي الصديق",
-                navLogo: "تكسي الصديق",
-                tagline: "صديقك الموثوق في كل رحلة",
-                navHome: "الرئيسية",
-                navBook: "احجز رحلة",
-                navLang: "English",
-                economyBadge: "اقتصادي",
-                vipBadge: "كبار الشخصيات",
-                seaterLabel: "مقاعد",
-                veh1Title: "هيونداي ستاريا",
-                veh2Title: "تويوتا كامري",
-                bookTitle: "أكمل حجزك",
-                bookSubtitle: "اختر سيارتك وأخبرنا عن وجهتك.",
-                selectVehicleLabel: "اختر فئة السيارة",
-                btnEconomy: "اقتصادي (كامري)",
-                btnVip: "كبار الشخصيات (ستاريا)",
-                modalSource: "مكان الانطلاق",
-                modalDest: "الوجهة",
-                modalDate: "تاريخ السفر",
-                estimatedPrices: "الأسعار التقديرية للمسارات الشائعة",
-                modalBtn: "احجز الآن عبر الواتساب",
-                route1: "الرياض ← مكة",
-                route2: "الرياض ← المدينة",
-                route3: "الرياض ← جدة",
-                route4: "الرياض ← الدمام",
-                footerText: "© 2024 تكسي الصديق. جميع الحقوق محفوظة. | واتساب/اتصال: +923156952026",
-                luggageLabel: "حقائب",
-                acLabel: "مكيف",
-                acYes: "نعم",
-            },
-        };
+      const translations = {
+        en: {
+          pageTitle: "Book a Ride - Siddique Taxi",
+          navLogo: "Siddique Taxi",
+          tagline: "Your trusted friend for every journey",
+          navHome: "Home",
+          navBook: "Book a Ride",
+          navLang: "العربية",
+          economyBadge: "Economy",
+          vipBadge: "VIP",
+          seaterLabel: "Seater",
+          veh1Title: "Hyundai Staria",
+          veh2Title: "Toyota Camry",
+          bookTitle: "Complete Your Booking",
+          bookSubtitle: "Select your vehicle and tell us where you need to go.",
+          selectVehicleLabel: "Choose Vehicle Class",
+          btnEconomy: "Economy (Camry)",
+          btnVip: "VIP (Staria)",
+          modalSource: "Source Location",
+          modalDest: "Destination",
+          modalDate: "Travel Date",
+          estimatedPrices: "Estimated Prices For Popular Routes",
+          modalBtn: "Book Now via WhatsApp",
+          route1: "Riyadh → Makkah",
+          route2: "Riyadh → Medina",
+          route3: "Riyadh → Jeddah",
+          route4: "Riyadh → Dammam",
+          footerText:
+            "© 2024 Siddique Taxi. All rights reserved. | WhatsApp/Call: +923156952026",
+          luggageLabel: "Luggage",
+          acLabel: "A/C",
+          acYes: "Yes",
+        },
+        ar: {
+          pageTitle: "احجز رحلتك - تكسي الصديق",
+          navLogo: "تكسي الصديق",
+          tagline: "صديقك الموثوق في كل رحلة",
+          navHome: "الرئيسية",
+          navBook: "احجز رحلة",
+          navLang: "English",
+          economyBadge: "اقتصادي",
+          vipBadge: "كبار الشخصيات",
+          seaterLabel: "مقاعد",
+          veh1Title: "هيونداي ستاريا",
+          veh2Title: "تويوتا كامري",
+          bookTitle: "أكمل حجزك",
+          bookSubtitle: "اختر سيارتك وأخبرنا عن وجهتك.",
+          selectVehicleLabel: "اختر فئة السيارة",
+          btnEconomy: "اقتصادي (كامري)",
+          btnVip: "كبار الشخصيات (ستاريا)",
+          modalSource: "مكان الانطلاق",
+          modalDest: "الوجهة",
+          modalDate: "تاريخ السفر",
+          estimatedPrices: "الأسعار التقديرية للمسارات الشائعة",
+          modalBtn: "احجز الآن عبر الواتساب",
+          route1: "الرياض ← مكة",
+          route2: "الرياض ← المدينة",
+          route3: "الرياض ← جدة",
+          route4: "الرياض ← الدمام",
+          footerText:
+            "© 2024 تكسي الصديق. جميع الحقوق محفوظة. | واتساب/اتصال: +923156952026",
+          luggageLabel: "حقائب",
+          acLabel: "مكيف",
+          acYes: "نعم",
+        },
+      };
 
-        let currentLang = "en";
-        let activeVehicle = "economy"; // Default based on user request
+      let currentLang = "en";
+      let activeVehicle = "economy"; // Default based on user request
 
-        const vehicleData = {
-            economy: {
-                id: 'economy',
-                img: '/assets/camary-pic.jpg',
-                fallbackImg: 'https://images.unsplash.com/photo-1621007947382-bb3c3994e3fd?auto=format&fit=crop&q=80&w=800',
-                titleKey: 'veh2Title',
-                badgeKey: 'economyBadge',
-                seats: '4',
-                luggage: '3',
-                prices: [
-                    { routeKey: 'route1', val: '800 SAR' },
-                    { routeKey: 'route2', val: '700 SAR' },
-                    { routeKey: 'route3', val: '900 SAR' },
-                    { routeKey: 'route4', val: '400 SAR' }
-                ],
-                whatsappName: "Economy (Toyota Camry)"
-            },
-            vip: {
-                id: 'vip',
-                img: '/assets/staria-pic.jpg',
-                fallbackImg: 'https://images.unsplash.com/photo-1549643152-bd8861113b6d?auto=format&fit=crop&q=80&w=800',
-                titleKey: 'veh1Title',
-                badgeKey: 'vipBadge',
-                seats: '7',
-                luggage: '6',
-                prices: [
-                    { routeKey: 'route1', val: '1200 SAR' },
-                    { routeKey: 'route2', val: '1000 SAR' },
-                    { routeKey: 'route3', val: '1300 SAR' },
-                    { routeKey: 'route4', val: '650 SAR' }
-                ],
-                whatsappName: "VIP (Hyundai Staria)"
-            }
-        };
+      const vehicleData = {
+        economy: {
+          id: "economy",
+          img: "/assets/camary-pic.jpg",
+          fallbackImg:
+            "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fd?auto=format&fit=crop&q=80&w=800",
+          titleKey: "veh2Title",
+          badgeKey: "economyBadge",
+          seats: "4",
+          luggage: "3",
+          prices: [
+            { routeKey: "route1", val: "800 SAR" },
+            { routeKey: "route2", val: "700 SAR" },
+            { routeKey: "route3", val: "900 SAR" },
+            { routeKey: "route4", val: "400 SAR" },
+          ],
+          whatsappName: "Economy (Toyota Camry)",
+        },
+        vip: {
+          id: "vip",
+          img: "/assets/staria-pic.jpg",
+          fallbackImg:
+            "https://images.unsplash.com/photo-1549643152-bd8861113b6d?auto=format&fit=crop&q=80&w=800",
+          titleKey: "veh1Title",
+          badgeKey: "vipBadge",
+          seats: "7",
+          luggage: "6",
+          prices: [
+            { routeKey: "route1", val: "1200 SAR" },
+            { routeKey: "route2", val: "1000 SAR" },
+            { routeKey: "route3", val: "1300 SAR" },
+            { routeKey: "route4", val: "650 SAR" },
+          ],
+          whatsappName: "VIP (Hyundai Staria)",
+        },
+      };
 
-        function toggleLanguage() {
-            currentLang = currentLang === "en" ? "ar" : "en";
-            updateDOMTranslations();
-            renderPrices(); // Re-render prices to get translated route names
-        }
+      function toggleLanguage() {
+        currentLang = currentLang === "en" ? "ar" : "en";
+        updateDOMTranslations();
+        renderPrices(); // Re-render prices to get translated route names
+      }
 
-        function updateDOMTranslations() {
-            const t = translations[currentLang];
-            document.querySelectorAll("[data-i18n]").forEach((el) => {
-                const key = el.getAttribute("data-i18n");
-                if (t[key]) {
-                    if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
-                        el.placeholder = t[key];
-                    } else {
-                        el.innerText = t[key];
-                    }
-                }
-            });
-
-            const html = document.documentElement;
-            if (currentLang === "ar") {
-                html.setAttribute("dir", "rtl");
-                html.setAttribute("lang", "ar");
+      function updateDOMTranslations() {
+        const t = translations[currentLang];
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const key = el.getAttribute("data-i18n");
+          if (t[key]) {
+            if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
+              el.placeholder = t[key];
             } else {
-                html.setAttribute("dir", "ltr");
-                html.setAttribute("lang", "en");
+              el.innerText = t[key];
             }
-        }
-
-        function selectVehicle(type) {
-            activeVehicle = type;
-            const data = vehicleData[type];
-
-            // UI Toggle Logic
-            const btnEconomy = document.getElementById('btnEconomy');
-            const btnVip = document.getElementById('btnVip');
-            const vipHighlightBar = document.getElementById('vipHighlightBar');
-
-            if (type === 'economy') {
-                btnEconomy.className = "flex-1 py-2.5 text-sm font-bold bg-white shadow-sm rounded-lg text-gray-900 transition-all z-10";
-                btnVip.className = "flex-1 py-2.5 text-sm font-bold text-gray-500 hover:text-gray-900 transition-all z-10";
-                if (vipHighlightBar) vipHighlightBar.style.display = 'none';
-                document.getElementById('carBadge').className = "bg-gray-800 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md uppercase tracking-wider";
-            } else {
-                btnVip.className = "flex-1 py-2.5 text-sm font-bold bg-white shadow-sm rounded-lg text-brand-700 transition-all z-10";
-                btnEconomy.className = "flex-1 py-2.5 text-sm font-bold text-gray-500 hover:text-gray-900 transition-all z-10";
-                if (vipHighlightBar) vipHighlightBar.style.display = 'block';
-                document.getElementById('carBadge').className = "bg-gradient-to-r from-brand-600 to-brand-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md uppercase tracking-wider";
-            }
-
-            // Update Image (with re-trigger animation hack)
-            const img = document.getElementById('carImage');
-            img.classList.remove('fade-in');
-            void img.offsetWidth; // trigger reflow
-            img.src = data.img;
-            img.onerror = () => { img.src = data.fallbackImg; };
-            img.classList.add('fade-in');
-
-            // Update Text Specs
-            document.getElementById('carSeats').innerText = data.seats;
-            const luggageEl = document.getElementById('carLuggage');
-            if (luggageEl) luggageEl.innerText = data.luggage;
-
-            const titleEl = document.getElementById('carTitleEn');
-            titleEl.setAttribute('data-i18n', data.titleKey);
-            document.getElementById('carBadge').setAttribute('data-i18n', data.badgeKey);
-
-            // Trigger translation refresh for the dynamically changed badges
-            updateDOMTranslations();
-            renderPrices();
-        }
-
-        function renderPrices() {
-            const listEl = document.getElementById('priceList');
-            const data = vehicleData[activeVehicle];
-            const t = translations[currentLang];
-
-            listEl.innerHTML = ''; // clear
-
-            data.prices.forEach(p => {
-                const li = document.createElement('li');
-                li.className = "flex justify-between items-center text-gray-700 font-medium py-1.5 border-b border-brand-100/30 last:border-0";
-
-                const spanRoute = document.createElement('span');
-                spanRoute.innerText = t[p.routeKey];
-
-                const spanPrice = document.createElement('span');
-                spanPrice.className = activeVehicle === 'vip' ? "text-brand-700 font-bold" : "text-gray-900 font-bold";
-                spanPrice.innerText = p.val;
-
-                li.appendChild(spanRoute);
-                li.appendChild(spanPrice);
-                listEl.appendChild(li);
-            });
-        }
-
-        function submitBooking() {
-            const sourceEl = document.getElementById("modalSource");
-            const destEl = document.getElementById("modalDest");
-            const dateEl = document.getElementById("modalDate");
-
-            const source = sourceEl && sourceEl.value.trim() ? sourceEl.value.trim() : "";
-            const dest = destEl && destEl.value.trim() ? destEl.value.trim() : "";
-            const date = dateEl && dateEl.value.trim() ? dateEl.value.trim() : "";
-
-            const number = "+923156952026";
-            const carName = vehicleData[activeVehicle].whatsappName;
-
-            let text = "";
-            let dataFilled = source !== "" && dest !== "" && date !== "";
-
-            if (dataFilled) {
-                text = `I want to book a ride (${carName}) from ${source} to ${dest} on ${date}`;
-            } else {
-                text = `I want to book a ride (${carName})`;
-            }
-
-            const url = `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
-            window.open(url, "_blank");
-        }
-
-        // Setup logic on load
-        window.addEventListener("load", () => {
-            // Setup minimum date logic
-            const dateInput = document.getElementById('modalDate');
-            if (dateInput) {
-                const today = new Date().toISOString().split('T')[0];
-                dateInput.setAttribute('min', today);
-            }
-
-            // Check URL parameters to auto-select vehicle if navigated from homepage
-            const urlParams = new URLSearchParams(window.location.search);
-            const carParam = urlParams.get('car');
-            if (carParam === 'vip') {
-                selectVehicle('vip');
-            } else {
-                selectVehicle('economy'); // Default
-            }
-
-            // Init translation on load
-            updateDOMTranslations();
+          }
         });
 
-        // Hide Navbar on Scroll
-        let lastScrollTop = 0;
-        const navbar = document.getElementById("navbar");
-
-        window.addEventListener("scroll", function () {
-            let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-            if (currentScroll > lastScrollTop && currentScroll > 80) {
-                if (!mobileMenuOpen) {
-                    navbar.classList.add("-translate-y-full");
-                }
-            } else {
-                navbar.classList.remove("-translate-y-full");
-            }
-            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
-        }, false);
-
-        // Mobile Menu Toggle
-        let mobileMenuOpen = false;
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            const path = document.getElementById('hamburgerPath');
-            mobileMenuOpen = !mobileMenuOpen;
-            if (mobileMenuOpen) {
-                menu.classList.remove('hidden');
-                path.setAttribute('d', 'M6 18L18 6M6 6l12 12'); // Cross
-            } else {
-                menu.classList.add('hidden');
-                path.setAttribute('d', 'M4 6h16M4 12h16M4 18h16'); // Hamburger
-            }
+        const html = document.documentElement;
+        if (currentLang === "ar") {
+          html.setAttribute("dir", "rtl");
+          html.setAttribute("lang", "ar");
+        } else {
+          html.setAttribute("dir", "ltr");
+          html.setAttribute("lang", "en");
         }
-    </script>
-</body>
+      }
 
+      function selectVehicle(type) {
+        activeVehicle = type;
+        const data = vehicleData[type];
+
+        // UI Toggle Logic
+        const btnEconomy = document.getElementById("btnEconomy");
+        const btnVip = document.getElementById("btnVip");
+        const vipHighlightBar = document.getElementById("vipHighlightBar");
+
+        if (type === "economy") {
+          btnEconomy.className =
+            "flex-1 py-2.5 text-sm font-bold bg-white shadow-sm rounded-lg text-gray-900 transition-all z-10";
+          btnVip.className =
+            "flex-1 py-2.5 text-sm font-bold text-gray-500 hover:text-gray-900 transition-all z-10";
+          if (vipHighlightBar) vipHighlightBar.style.display = "none";
+          document.getElementById("carBadge").className =
+            "bg-gray-800 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md uppercase tracking-wider";
+        } else {
+          btnVip.className =
+            "flex-1 py-2.5 text-sm font-bold bg-white shadow-sm rounded-lg text-brand-700 transition-all z-10";
+          btnEconomy.className =
+            "flex-1 py-2.5 text-sm font-bold text-gray-500 hover:text-gray-900 transition-all z-10";
+          if (vipHighlightBar) vipHighlightBar.style.display = "block";
+          document.getElementById("carBadge").className =
+            "bg-gradient-to-r from-brand-600 to-brand-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md uppercase tracking-wider";
+        }
+
+        // Update Image (with re-trigger animation hack)
+        const img = document.getElementById("carImage");
+        img.classList.remove("fade-in");
+        void img.offsetWidth; // trigger reflow
+        img.src = data.img;
+        img.onerror = () => {
+          img.src = data.fallbackImg;
+        };
+        img.classList.add("fade-in");
+
+        // Update Text Specs
+        document.getElementById("carSeats").innerText = data.seats;
+        const luggageEl = document.getElementById("carLuggage");
+        if (luggageEl) luggageEl.innerText = data.luggage;
+
+        const titleEl = document.getElementById("carTitleEn");
+        titleEl.setAttribute("data-i18n", data.titleKey);
+        document
+          .getElementById("carBadge")
+          .setAttribute("data-i18n", data.badgeKey);
+
+        // Trigger translation refresh for the dynamically changed badges
+        updateDOMTranslations();
+        renderPrices();
+      }
+
+      function renderPrices() {
+        const listEl = document.getElementById("priceList");
+        const data = vehicleData[activeVehicle];
+        const t = translations[currentLang];
+
+        listEl.innerHTML = ""; // clear
+
+        data.prices.forEach((p) => {
+          const li = document.createElement("li");
+          li.className =
+            "flex justify-between items-center text-gray-700 font-medium py-1.5 border-b border-brand-100/30 last:border-0";
+
+          const spanRoute = document.createElement("span");
+          spanRoute.innerText = t[p.routeKey];
+
+          const spanPrice = document.createElement("span");
+          spanPrice.className =
+            activeVehicle === "vip"
+              ? "text-brand-700 font-bold"
+              : "text-gray-900 font-bold";
+          spanPrice.innerText = p.val;
+
+          li.appendChild(spanRoute);
+          li.appendChild(spanPrice);
+          listEl.appendChild(li);
+        });
+      }
+
+      function submitBooking() {
+        const sourceEl = document.getElementById("modalSource");
+        const destEl = document.getElementById("modalDest");
+        const dateEl = document.getElementById("modalDate");
+
+        const source =
+          sourceEl && sourceEl.value.trim() ? sourceEl.value.trim() : "";
+        const dest = destEl && destEl.value.trim() ? destEl.value.trim() : "";
+        const date = dateEl && dateEl.value.trim() ? dateEl.value.trim() : "";
+
+        const number = "+923156952026";
+        const carName = vehicleData[activeVehicle].whatsappName;
+
+        let text = "";
+        let dataFilled = source !== "" && dest !== "" && date !== "";
+
+        if (dataFilled) {
+          text = `I want to book a ride (${carName}) from ${source} to ${dest} on ${date}`;
+        } else {
+          text = `I want to book a ride (${carName})`;
+        }
+
+        const url = `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
+        window.open(url, "_blank");
+      }
+
+      // Setup logic on load
+      window.addEventListener("load", () => {
+        // Setup minimum date logic
+        const dateInput = document.getElementById("modalDate");
+        if (dateInput) {
+          const today = new Date().toISOString().split("T")[0];
+          dateInput.setAttribute("min", today);
+        }
+
+        // Check URL parameters to auto-select vehicle if navigated from homepage
+        const urlParams = new URLSearchParams(window.location.search);
+        const carParam = urlParams.get("car");
+        if (carParam === "vip") {
+          selectVehicle("vip");
+        } else {
+          selectVehicle("economy"); // Default
+        }
+
+        // Init translation on load
+        updateDOMTranslations();
+      });
+
+      // Hide Navbar on Scroll
+      let lastScrollTop = 0;
+      const navbar = document.getElementById("navbar");
+
+      window.addEventListener(
+        "scroll",
+        function () {
+          let currentScroll =
+            window.pageYOffset || document.documentElement.scrollTop;
+          if (currentScroll > lastScrollTop && currentScroll > 80) {
+            if (!mobileMenuOpen) {
+              navbar.classList.add("-translate-y-full");
+            }
+          } else {
+            navbar.classList.remove("-translate-y-full");
+          }
+          lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+        },
+        false,
+      );
+
+      // Mobile Menu Toggle
+      let mobileMenuOpen = false;
+      function toggleMobileMenu() {
+        const menu = document.getElementById("mobileMenu");
+        const path = document.getElementById("hamburgerPath");
+        mobileMenuOpen = !mobileMenuOpen;
+        if (mobileMenuOpen) {
+          menu.classList.remove("hidden");
+          path.setAttribute("d", "M6 18L18 6M6 6l12 12"); // Cross
+        } else {
+          menu.classList.add("hidden");
+          path.setAttribute("d", "M4 6h16M4 12h16M4 18h16"); // Hamburger
+        }
+      }
+    </script>
+  </body>
 </html>
